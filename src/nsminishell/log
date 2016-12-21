@@ -1,0 +1,77 @@
+==22083== Memcheck, a memory error detector
+==22083== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==22083== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==22083== Command: ./nsminishell
+==22083== Parent PID: 2926
+==22083== 
+==22083== Syscall param chdir(path) points to uninitialised byte(s)
+==22083==    at 0x538BEB7: chdir (syscall-template.S:84)
+==22083==    by 0x401553: processCmd (nsminishell.c:116)
+==22083==    by 0x4021A4: processInput (nsminishell.c:301)
+==22083==    by 0x4029F0: main (nsminishell.c:411)
+==22083==  Address 0x58ad792 is 2 bytes inside a block of size 3 alloc'd
+==22083==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22083==    by 0x402E0A: my_str2vect (my_str2vect.c:26)
+==22083==    by 0x402194: processInput (nsminishell.c:299)
+==22083==    by 0x4029F0: main (nsminishell.c:411)
+==22083== 
+==22083== Conditional jump or move depends on uninitialised value(s)
+==22083==    at 0x52E3CC0: vfprintf (vfprintf.c:1632)
+==22083==    by 0x53AACA5: __vsnprintf_chk (vsnprintf_chk.c:63)
+==22083==    by 0x4E562F5: vsnprintf (stdio2.h:77)
+==22083==    by 0x4E562F5: _nc_printf_string (safe_sprintf.c:262)
+==22083==    by 0x4E4EEB3: vwprintw (lib_printw.c:141)
+==22083==    by 0x4E4F277: mvprintw (lib_printw.c:102)
+==22083==    by 0x4015D2: processCmd (nsminishell.c:118)
+==22083==    by 0x4021A4: processInput (nsminishell.c:301)
+==22083==    by 0x4029F0: main (nsminishell.c:411)
+==22083== 
+==22083== Conditional jump or move depends on uninitialised value(s)
+==22083==    at 0x4C31FBC: strcmp (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22083==    by 0x4013DC: processCmd (nsminishell.c:87)
+==22083==    by 0x4021A4: processInput (nsminishell.c:301)
+==22083==    by 0x4029F0: main (nsminishell.c:411)
+==22083== 
+==22083== Conditional jump or move depends on uninitialised value(s)
+==22083==    at 0x4C31FAA: strcmp (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22083==    by 0x4013DC: processCmd (nsminishell.c:87)
+==22083==    by 0x4021A4: processInput (nsminishell.c:301)
+==22083==    by 0x4029F0: main (nsminishell.c:411)
+==22083== 
+==22083== 
+==22083== HEAP SUMMARY:
+==22083==     in use at exit: 323,600 bytes in 573 blocks
+==22083==   total heap usage: 645 allocs, 72 frees, 341,878 bytes allocated
+==22083== 
+==22083== 256 bytes in 1 blocks are possibly lost in loss record 24 of 58
+==22083==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22083==    by 0x402123: processInput (nsminishell.c:294)
+==22083==    by 0x4029F0: main (nsminishell.c:411)
+==22083== 
+==22083== 1,024 bytes in 1 blocks are definitely lost in loss record 38 of 58
+==22083==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22083==    by 0x4025F1: loadHistory (nsminishell.c:356)
+==22083==    by 0x402943: main (nsminishell.c:400)
+==22083== 
+==22083== 32,768 bytes in 32 blocks are possibly lost in loss record 52 of 58
+==22083==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22083==    by 0x40214F: processInput (nsminishell.c:296)
+==22083==    by 0x4029F0: main (nsminishell.c:411)
+==22083== 
+==22083== 66,048 (512 direct, 65,536 indirect) bytes in 2 blocks are definitely lost in loss record 58 of 58
+==22083==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22083==    by 0x402123: processInput (nsminishell.c:294)
+==22083==    by 0x4029F0: main (nsminishell.c:411)
+==22083== 
+==22083== LEAK SUMMARY:
+==22083==    definitely lost: 1,536 bytes in 3 blocks
+==22083==    indirectly lost: 65,536 bytes in 64 blocks
+==22083==      possibly lost: 33,024 bytes in 33 blocks
+==22083==    still reachable: 223,504 bytes in 473 blocks
+==22083==         suppressed: 0 bytes in 0 blocks
+==22083== Reachable blocks (those to which a pointer was found) are not shown.
+==22083== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==22083== 
+==22083== For counts of detected and suppressed errors, rerun with: -v
+==22083== Use --track-origins=yes to see where uninitialised values come from
+==22083== ERROR SUMMARY: 9 errors from 8 contexts (suppressed: 0 from 0)

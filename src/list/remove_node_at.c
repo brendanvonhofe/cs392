@@ -18,7 +18,11 @@ void* remove_node_at(struct s_node** head, int n) {
 
     void* ret = ptr->elem;
 
-    if(ptr->next == NULL) {
+    if(ptr->next == NULL && ptr->prev == NULL) {
+        *head = NULL;
+        head = NULL;
+    }
+    else if(ptr->next == NULL) {
         ptr->prev->next = NULL;
     }
     else if(n == 0) {

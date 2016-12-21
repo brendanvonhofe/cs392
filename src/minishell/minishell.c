@@ -14,6 +14,9 @@ void sig_handler(pid_t pid) {
 }
 
 void execute(char *buf) {
+    if(my_strcmp(buf, "")) {
+        return;
+    }
     pid_t pid;
     char **vect = my_str2vect(buf);
     if((pid = fork()) < 0) {
@@ -33,7 +36,7 @@ void execute(char *buf) {
 int main(int argc, char *argv[]) {
 
     int running = 1;
-    char *cur_dir;
+    char cur_dir[4096];
     char *buf;
     int reads = 1;
     int rd_ind = 0;
@@ -46,7 +49,7 @@ int main(int argc, char *argv[]) {
 
         signal(SIGINT, sig_handler);
 
-        cur_dir = getcwd(NULL, 0);
+        getcwd(cur_dir, sizeof(cur_dir));
         my_str("MINISHELL: ");
         my_str(cur_dir);
         my_str(" $:");
@@ -88,7 +91,7 @@ int main(int argc, char *argv[]) {
             }
 
             if(chdir(abs_path) < 0) {
-                perror("Invalid path");
+                my_str("Invalid path: ");
                 my_str(abs_path);
                 my_char('\n');
             }

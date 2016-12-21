@@ -32,6 +32,7 @@ char *my_strnconcat(char*, char*, int);
 int my_atoi(char*);
 char *my_vect2str(char **x);
 char **my_str2vect(char *);
-void *my_malloc(int);
+//void *my_malloc(int);
+void my_panic(char*, int);
 
 #endif

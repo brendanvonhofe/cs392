@@ -13,7 +13,13 @@ void* remove_last(struct s_node** node) {
         ptr = ptr->next;
     }
 
-    ptr->prev->next = NULL;
+    if(ptr->prev != NULL) {
+        ptr->prev->next = NULL;
+    }
+    else {
+        *node = NULL;
+        node = NULL;
+    }
 
     void* ret = ptr->elem;
 

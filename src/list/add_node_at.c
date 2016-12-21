@@ -2,12 +2,16 @@
 #include "list.h"
 
 void add_node_at(struct s_node *node, struct s_node **head, int n) {
-    if(node == NULL || head == NULL || node->elem == NULL || *head == NULL) {
+    if(node == NULL || head == NULL || node->elem == NULL) {
         my_str("Non-null arguments only. \n");
         return;
     }
     if(node->prev != NULL || node->next != NULL) {
         my_str("Looks like your trying to add a node that already exists in the list");
+        return;
+    }
+    if(*head == NULL) {
+        *head = node;
         return;
     }
     if(n < 0) n = 0;

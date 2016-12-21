@@ -2,7 +2,7 @@
 #include "list.h"
 
 void add_node(struct s_node* node, struct s_node** head) {
-    if(node == NULL || node->elem == NULL || head == NULL || *head == NULL) {
+    if(node == NULL || node->elem == NULL || head == NULL) {
         my_str("Non-null arguments only. \n");
         return;
     }
@@ -10,9 +10,12 @@ void add_node(struct s_node* node, struct s_node** head) {
         my_str("Looks like your trying to add a node that already exists in the list");
         return;
     }
-
-
-    (*head)->prev = node;
-    node->next = *head;
-    *head = node;
+    if(*head == NULL) {
+        *head = node;
+    }
+    else {
+        (*head)->prev = node;
+        node->next = *head;
+        *head = node;
+    }
 }

@@ -1,8 +1,8 @@
 CFLAGS = -g -Wall -Werror -pedantic -std=c99 -I ../include
 LDLIBS = -L../lib -llist -lmy
 
-check: testmalloc
-		./testmalloc
+check: testlist
+	./testlist
 
 clean:
-		rm -f ./testmalloc
+		rm -f ./testlist
